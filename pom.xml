@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
-	<artifactId>achieveing_ci-cd</artifactId>
+	<artifactId>achieving-CICD</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
@@ -35,7 +35,7 @@
 						<muleVersion>4.6.1</muleVersion>
 						<username>${PLATFORM_USERNAME}</username>
 						<password>${PLATFORM_PASSWORD}</password>
-						<applicationName>achieveing_ci-cd</applicationName>
+						<applicationName>achieving-CICD</applicationName>
 						<environment>Sandbox</environment>
 						<region>us-east-2</region>
 						<workers>1</workers>
