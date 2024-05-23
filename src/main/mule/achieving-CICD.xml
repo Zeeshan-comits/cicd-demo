@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f1280697-c7f0-4e37-a960-ad2fa999a79a" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
-	<flow name="achieving-CICD" doc:id="e926d80f-340f-49e6-9033-21064c3a4a35" >
+	<flow name="Baap-flow" doc:id="e926d80f-340f-49e6-9033-21064c3a4a35" >
 		<http:listener doc:name="Listener" doc:id="ad495409-397b-4f19-a6b2-0c3805f7cde8" config-ref="HTTP_Listener_config" path="/cicd"/>
-		<set-payload value='#["cicd implementation"]' doc:name="Set Payload" doc:id="5a5aa172-4514-46c6-8c8e-9f883f66e244" />
+		<ee:transform doc:name="Transform Message" doc:id="94cd68b7-8563-4d5e-94c6-49117ac934e4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"Message":"Baap baap hota hain"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="21e335e5-4f56-40f8-9bcc-aef786ec17a8" message="papa payload #[payload]"/>
 	</flow>
 </mule>
